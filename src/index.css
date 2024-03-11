@@ -1,68 +1,186 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+.App {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column; /* Keeps the original column layout at the top level */
+  height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.navbar {
+  width: 100%;
+  height: 70px;
+  background-color: #343a40;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2; /* Ensures the navbar is above the main layout but doesn't need to be the topmost layer */
 }
 
-button {
+/* Creates a main layout that sits beside the sidebar */
+.main-layout {
+  display: flex;
+  flex-direction: row;
+  /* width: 100%; */
+  margin-top: 70px; /* Pushes the entire layout below the navbar */
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #343a40;
+  color: white;
+  padding: 20px;
+  height: calc(100vh - 70px); /* Adjusts height to fill under the navbar */
+  position: fixed;
+  top: 70px;
+  left: 0;
+  z-index: 1; /* Ensures sidebar is below the content in stacking context */
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow: auto;
+  margin-left: 220px; /* Adjusts to not overlap with sidebar */
+  border-top-left-radius: 20px; /* Applies the border radius */
+  background-color: #fff; /* Important for visibility of the border-radius */
+  z-index: 3; /* Higher than navbar and sidebar to show border radius */
+  position: relative; /* Needed for z-index to take effect */
+  display: flex;
+  justify-content: center; /* Horizontally centers its children */
+  align-items: center; /* Vertically centers its children */
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Aligns items to the start vertically */
+  align-items: center; /* Centers items horizontally */
+  flex-wrap: wrap; /* Allows items to wrap, might not be needed with column direction */
+  gap: 20px; /* Space between items */
+  min-height: 100vh; /* Ensures the dashboard takes at least the full height of the viewport */
+  width: 100%; /* Ensures the dashboard spans the full width */
+  padding: 20px; /* Adds some padding around the container */
+}
+
+/* Portfolio card styling */
+.portfolio-card {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 15px;
+  margin-bottom: 20px;
+  width: 700px;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Aligns children to the start (left), adjusted from center */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.portfolio-card h3 {
+  margin: 0 0 20px 0; /* Adjusted margins for consistency */
+  align-self: flex-start; /* Ensures alignment to the start */
+}
+
+/* New CSS for the titles container */
+.titles-container {
+  display: flex;
+  width: 100%; /* Matches .coin-card width */
+  justify-content: space-between; /* Adjust based on your .coin-card internal layout */
+  padding: 0 15px; /* Matches .coin-card padding for alignment */
+  box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+.portfolio-card > div {
+  width: 100%; /* Ensures .coin-card containers match the .portfolio-card width */
+}
+
+
+/* Coin card styling */
+.coin-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Centers items vertically */
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  margin-bottom: 10px; /* Space between coin cards */
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  border-radius: 8px;
+  max-width: 670px; /* Use max-width for better responsiveness */
+  width: 100%; /* Allows the coin-card to adjust based on parent's width */
+}
+
+/* Assuming there are three items: symbol (h4), price, and market cap (span) */
+.coin-card > * {
+  flex: 1; /* Gives equal space to each child */
+  text-align: left; /* Aligns the text to the left */
+}
+
+.coin-card h4,
+.coin-card span {
+  margin: 0; /* Optionally resets margin for consistency */
+  white-space: nowrap; /* Keeps content on a single line */
+}
+
+
+.coin-card:hover {
+  background-color: #e0e0e0; /* Darker shade for hover effect */
+  /* Remove the transform property to stop moving along the Y-axis */
+}
+
+.create-portfolio {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the content horizontally */
+  padding: 20px;
+  margin: 20px;
+  background-color: #f5f5f5; /* Light background for the form area */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: auto;
+  max-width: 500px; /* Ensures the form does not stretch too wide */
+}
+
+.create-portfolio h3 {
+  margin-bottom: 20px;
+}
+
+.create-portfolio form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.create-portfolio label {
+  margin-top: 10px;
+}
+
+.create-portfolio input,
+.create-portfolio textarea {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: calc(100% - 20px); /* Adjusts for padding */
+}
+
+.create-portfolio textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.create-portfolio button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-portfolio button:hover {
+  background-color: #0056b3;
 }
