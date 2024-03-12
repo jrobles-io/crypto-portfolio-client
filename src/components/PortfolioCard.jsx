@@ -23,16 +23,19 @@ const PortfolioCard = ({portfolio}) => {
     <div className="portfolio-card">
       <h3>{portfolio.title}</h3>
       <div className='titles-container'>
-        <span>Name</span>
+        <span>Logo</span>
+        <span>Symbol</span>
         <span>Price</span>
-        <span>Amount</span>
         <span>USD Value</span>
       </div>
       {coins && 
         coins.map((coin) => {
-          if (coin.portfolioId === portfolio.id) {
-            return <CoinCard coin={coin} key={coin.id} />;
-          }
+          return portfolio.coinIds.map((coinId)=>{
+            if (coin.id === coinId) {
+              // console.log(coin.id, coinId, coin)
+              return <CoinCard coin={coin} key={coin.id} />;
+            }
+          })
         })
       }
     </div>
