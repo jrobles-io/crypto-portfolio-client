@@ -139,7 +139,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: auto;
-  max-width: 500px; /* Ensures the form does not stretch too wide */
+  min-width: 500px; /* Ensures the form does not stretch too wide */
 }
 
 .create-portfolio h3 {
@@ -183,4 +183,8 @@
 
 .create-portfolio button:hover {
   background-color: #0056b3;
+}
+
+.coin-selection {
+  width: 450px;
 }

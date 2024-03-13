@@ -1,13 +1,26 @@
 // src/pages/CreateProjectPage.jsx
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../services/API_URL";
+import AddCoin from "../components/AddCoin";
 
 function CreatePortfolioPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [coins, setCoins] = useState([]);
+
+  const getAllCoins = () => {
+    axios
+      .get(`${API_URL}/coins`)
+      .then((response) => setCoins(response.data))
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    getAllCoins();
+  }, [] );
 
   const navigate = useNavigate();
 
@@ -47,8 +60,12 @@ function CreatePortfolioPage() {
           onChange={(e) => setDescription(e.target.value)}
         />
 
+        <label>Add Coins</label>
+
         <button type="submit">Submit</button>
       </form>
+        <AddCoin />
+
     </div>
   );
 }
