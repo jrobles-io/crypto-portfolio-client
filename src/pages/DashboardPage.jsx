@@ -10,7 +10,9 @@ const DashboardPage = () => {
   const getAllPortfolios = () => {
     axios
       .get(`${API_URL}/portfolios`)
-      .then((response) => setPortfolios(response.data))
+      .then((response) => {
+        console.log(response.data)
+        setPortfolios(response.data)})
       .catch((error) => console.log(error));
   };
 

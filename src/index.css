@@ -81,6 +81,13 @@
   align-self: flex-start; /* Ensures alignment to the start */
 }
 
+
+.white { 
+  background-color: #f8f9fa ;
+}
+.green { 
+  background-color: green ;
+}
 /* New CSS for the titles container */
 .titles-container {
   display: flex;
@@ -100,7 +107,7 @@
   display: flex;
   flex-direction: row;
   align-items: center; /* Centers items vertically */
-  background-color: #ffffff;
+ 
   border: 1px solid #dee2e6;
   margin-bottom: 10px; /* Space between coin cards */
   padding: 10px;
@@ -160,7 +167,7 @@
 .create-portfolio textarea {
   padding: 10px;
   margin-top: 5px;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 4px;
   width: calc(100% - 20px); /* Adjusts for padding */
 }
@@ -187,4 +194,70 @@
 
 .coin-selection {
   width: 450px;
+}
+
+
+.input-wrapper {
+  margin: 10px 10px 10px 0;
+  width: 97%;
+  height: 2.5rem;
+  border: none;
+  border-radius: 10px;
+  padding: 0 15px;
+  box-shadow: 0px 0px 8px #ddd;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  background-color: transparent;
+  border: none;
+  height: 100%;
+  font-size: 1.25rem;
+  width: 100%;
+  margin-left: 5px;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+#search-icon {
+  color: royalblue;
+}
+
+#delete-icon {
+  width: 30px;
+  height: auto;
+}
+
+.portfolio-card-header {
+  display: flex;
+  align-items: center; /* Ensures vertical alignment is centered for all items */
+  justify-content: space-between; /* Puts space between the grouped items */
+  padding: 10px; /* Adds some padding inside the header for better spacing */
+}
+
+.portfolio-card-header h3 {
+  flex-grow: 1; /* Allows the title to take up available space, pushing icons to the right */
+  margin-right: 20px; /* Adds some space between the title and the icons */
+}
+
+#edit-icon,
+#delete-icon {
+  cursor: pointer; /* Changes the cursor to indicate clickable items */
+  margin-left: 10px; /* Adds space between the icons */
+}
+
+/* Ensuring the icons are styled appropriately */
+#edit-icon,
+#delete-icon {
+  width: 24px; /* Sets a fixed width for icons */
+  height: 24px; /* Sets a fixed height for icons */
+}
+
+.link-to-edit, .delete-container {
+  display: flex; /* Applies Flexbox to ensure alignment */
+  align-items: center; /* Centers items vertically within the container */
 }

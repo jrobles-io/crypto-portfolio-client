@@ -10,7 +10,7 @@ function CreatePortfolioPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [coins, setCoins] = useState([]);
-
+  const [portfolio, setPortfolio] = useState({ coinIds: [] });
   const getAllCoins = () => {
     axios
       .get(`${API_URL}/coins`)
@@ -20,17 +20,23 @@ function CreatePortfolioPage() {
 
   useEffect(() => {
     getAllCoins();
-  }, [] );
+  }, []);
+  useEffect(() => {
+    console.log(portfolio);
+  }, [portfolio]);
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {                          
+  const handleChange = (e) => {
+    console.log(portfolio);
+    setPortfolio((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
- 
-    const requestBody = { title, description };
-    
+
     axios
-      .post(`${API_URL}/portfolios`, requestBody)
+      .post(`${API_URL}/portfolios`, portfolio)
       .then((response) => {
         // Once the project is created navigate to Project List Page
         navigate("/");
@@ -47,25 +53,22 @@ function CreatePortfolioPage() {
         <input
           type="text"
           name="title"
-          value={title}
           required
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => handleChange(e)}
         />
 
         <label>Description:</label>
         <textarea
           type="text"
           name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(e) => handleChange(e)}
         />
 
         <label>Add Coins</label>
 
         <button type="submit">Submit</button>
+        <AddCoin setPortfolio={setPortfolio} portfolio={portfolio} />
       </form>
-        <AddCoin />
-
     </div>
   );
 }

@@ -4,6 +4,7 @@ import DashboardPage from './pages/DashboardPage'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import CreatePortfolioPage from './pages/CreatePortfolioPage'
+import PortfolioDetailsPage from './pages/PortfolioDetailsPage'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
             <Routes>
               <Route path='/' element={<DashboardPage />}/>
               <Route path='/CreatePortfolio' element={<CreatePortfolioPage />}/>
+              <Route path='/Portfolio/:portfolioId' element={<PortfolioDetailsPage />}></Route>
             </Routes>
           </div>
         </div>
