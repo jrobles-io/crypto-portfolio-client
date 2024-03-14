@@ -1,6 +1,7 @@
 // src/pages/CreateProjectPage.jsx
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { PortfolioContext } from "../contexts/portfolios.context";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../services/API_URL";
@@ -11,6 +12,9 @@ function CreatePortfolioPage() {
   const [description, setDescription] = useState("");
   const [coins, setCoins] = useState([]);
   const [portfolio, setPortfolio] = useState({ coinIds: [] });
+
+  const { getAllPortfolios } = useContext(PortfolioContext)
+
   const getAllCoins = () => {
     axios
       .get(`${API_URL}/coins`)
@@ -38,6 +42,7 @@ function CreatePortfolioPage() {
     axios
       .post(`${API_URL}/portfolios`, portfolio)
       .then((response) => {
+        getAllPortfolios()
         // Once the project is created navigate to Project List Page
         navigate("/");
       })

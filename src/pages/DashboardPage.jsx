@@ -1,24 +1,13 @@
 import PortfolioCard from "../components/PortfolioCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { PortfolioContext } from "../contexts/portfolios.context";
 import axios from "axios";
 import { API_URL } from "../services/API_URL";
 import { Link } from "react-router-dom";
 
 const DashboardPage = () => {
-  const [portfolios, setPortfolios] = useState([]);
 
-  const getAllPortfolios = () => {
-    axios
-      .get(`${API_URL}/portfolios`)
-      .then((response) => {
-        console.log(response.data)
-        setPortfolios(response.data)})
-      .catch((error) => console.log(error));
-  };
-
-  useEffect(() => {
-    getAllPortfolios();
-  }, []);
+  const { portfolios } = useContext(PortfolioContext)
 
   return (
     <div className="dashboard">

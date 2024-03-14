@@ -1,5 +1,6 @@
 import CoinCard from "./CoinCard"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { PortfolioContext } from "../contexts/portfolios.context";
 import axios from "axios";
 import { API_URL } from "../services/API_URL";
 import { FaEdit } from "react-icons/fa";
@@ -10,6 +11,8 @@ import { Link } from "react-router-dom";
 const PortfolioCard = ({portfolio}) => {
 
   const [coins, setCoins] = useState([]);
+
+  const { getAllPortfolios } = useContext(PortfolioContext)
 
   const getAllCoins = () => {
     axios
@@ -35,6 +38,13 @@ const PortfolioCard = ({portfolio}) => {
   const handleDelete = () => {
     axios
     .delete(`${API_URL}/portfolios/${portfolio.id}`)
+      .then((response) => {
+        console.log("Deleted Portfolio response", response.data)
+        getAllPortfolios()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   return (
