@@ -2,14 +2,18 @@
   display: flex;
   flex-direction: column; /* Keeps the original column layout at the top level */
   height: 100vh;
+  /* overflow: hidden;  */
+
 }
 
 .navbar {
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 70px;
-  background-color: #343a40;
+  background-color: #1a4c63;
   color: white;
-  padding: 10px 20px;
+  padding: 15px 0 0 0;
   text-align: center;
   position: fixed;
   top: 0;
@@ -17,12 +21,31 @@
   z-index: 2; /* Ensures the navbar is above the main layout but doesn't need to be the topmost layer */
 }
 
+.home-button {
+  background-image: linear-gradient(to right, #39b96f, #754df7); /* Gradient background */
+  border: none; /* Removes the default border */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Padding inside the button */
+  border-radius: 20px; /* Rounded corners */
+  cursor: pointer; /* Changes the cursor to indicate it's clickable */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+.home-button:hover {
+  transform: scale(1.05); /* Slightly enlarges the button */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adds shadow for depth */
+}
+
+
 /* Creates a main layout that sits beside the sidebar */
 .main-layout {
   display: flex;
-  flex-direction: row;
-  /* width: 100%; */
-  margin-top: 70px; /* Pushes the entire layout below the navbar */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%; /* Ensures that the layout takes full width of its parent */
+  overflow: auto; /* Adds scrolling to the layout if the content overflows */
 }
 
 .sidebar {
@@ -40,7 +63,9 @@
 .content {
   flex-grow: 1;
   padding: 20px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 100px 0 0 0;
   margin-left: 220px; /* Adjusts to not overlap with sidebar */
   border-top-left-radius: 20px; /* Applies the border radius */
   background-color: #fff; /* Important for visibility of the border-radius */
@@ -49,18 +74,38 @@
   display: flex;
   justify-content: center; /* Horizontally centers its children */
   align-items: center; /* Vertically centers its children */
+
 }
 
 .dashboard {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Aligns items to the start vertically */
-  align-items: center; /* Centers items horizontally */
-  flex-wrap: wrap; /* Allows items to wrap, might not be needed with column direction */
-  gap: 20px; /* Space between items */
-  min-height: 100vh; /* Ensures the dashboard takes at least the full height of the viewport */
-  width: 100%; /* Ensures the dashboard spans the full width */
-  padding: 20px; /* Adds some padding around the container */
+  align-items: center; /* Centers children horizontally */
+  gap: 20px; /* Adds space between each child element */
+  padding: 20px; /* Adds some padding around the dashboard content */
+  padding-top: calc(60px + 20px); /* Adjust 60px to your navbar's height + original padding-top */
+  min-height: calc(100vh - 60px); /* Adjust 60px to your navbar's height */
+  box-sizing: border-box; /* Ensures padding is included in the height calculation */
+  margin-top: 20px;
+}
+
+.dashboard h3 {
+  margin-top: 0;
+  margin-bottom: 20px; /* Adds some space below the heading */
+}
+
+.dashboard button {
+  padding: 10px 20px;
+  background-color: #007bff; /* Example button color, feel free to change */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard button:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
 }
 
 /* Portfolio card styling */
@@ -86,13 +131,13 @@
   background-color: #f8f9fa ;
 }
 .green { 
-  background-color: green ;
+  background-color: #39b96f ;
 }
 /* New CSS for the titles container */
 .titles-container {
   display: flex;
+  flex-direction: row; /* Adjust based on your .coin-card internal layout */
   width: 100%; /* Matches .coin-card width */
-  justify-content: space-between; /* Adjust based on your .coin-card internal layout */
   padding: 0 15px; /* Matches .coin-card padding for alignment */
   box-sizing: border-box; /* Ensures padding is included in the width */
 }
@@ -101,13 +146,22 @@
   width: 100%; /* Ensures .coin-card containers match the .portfolio-card width */
 }
 
+.titles-container span {
+  margin: 0; /* Optionally resets margin for consistency */
+  white-space: nowrap; /* Keeps content on a single line */
+}
+
+.titles-container > * {
+  flex: 1; /* Gives equal space to each child */
+  text-align: left; /* Aligns the text to the left */
+}
+
 
 /* Coin card styling */
 .coin-card {
   display: flex;
   flex-direction: row;
   align-items: center; /* Centers items vertically */
- 
   border: 1px solid #dee2e6;
   margin-bottom: 10px; /* Space between coin cards */
   padding: 10px;
@@ -120,8 +174,8 @@
 
 /* Assuming there are three items: symbol (h4), price, and market cap (span) */
 .coin-card > * {
-  flex: 1; /* Gives equal space to each child */
-  text-align: left; /* Aligns the text to the left */
+  flex: 1; 
+  text-align: left; 
 }
 
 .coin-card h4,
@@ -139,14 +193,15 @@
 .create-portfolio {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers the content horizontally */
-  padding: 20px;
-  margin: 20px;
-  background-color: #f5f5f5; /* Light background for the form area */
+  align-items: center; 
+  padding: 20px; 
+  min-height: calc(100vh - 80px); 
+  box-sizing: border-box; 
+  background-color: #f5f5f5; 
+  border: 1px solid #dee2e6;
+  min-width: 500px; 
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: auto;
-  min-width: 500px; /* Ensures the form does not stretch too wide */
+  margin-top: 100px;
 }
 
 .create-portfolio h3 {
@@ -173,7 +228,7 @@
 }
 
 .create-portfolio textarea {
-  height: 100px;
+  height: 50px;
   resize: vertical;
 }
 

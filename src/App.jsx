@@ -9,19 +9,17 @@ import EditPortfolioPage from './pages/EditPortfolioPage'
 function App() {
 
   return (
-      <div className='App'>
-        <Navbar />
         <div className='main-layout'>
-          <Sidebar />
-          <div className='content'>
+        <Navbar />
+          {/* <Sidebar /> */}
+          {/* <div className='content'> */}
             <Routes>
               <Route path='/' element={<DashboardPage />}/>
               <Route path='/CreatePortfolio' element={<CreatePortfolioPage />}/>
               <Route path='/Portfolio/:portfolioId' element={<EditPortfolioPage />}></Route>
             </Routes>
-          </div>
+          {/* </div> */}
         </div>
-      </div>
   )
 }
 

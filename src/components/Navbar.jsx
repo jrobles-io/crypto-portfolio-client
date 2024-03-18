@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
         <Link to='/'>
-            <button>Home</button>
+            <button className='home-button'>Home</button>
         </Link>
     </div>
   )

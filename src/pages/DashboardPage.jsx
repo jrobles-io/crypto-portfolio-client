@@ -17,7 +17,7 @@ const DashboardPage = () => {
           return <PortfolioCard portfolio={portfolio} key={portfolio.id} />;
         })
       ) : (
-        <p>Loading...</p>
+        <p>Create a new portfolio to start!</p>
       )}
 
         <Link to="/CreatePortfolio">         

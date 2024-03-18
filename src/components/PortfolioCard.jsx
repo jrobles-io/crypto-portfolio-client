@@ -60,8 +60,8 @@ const PortfolioCard = ({portfolio}) => {
       <div className='titles-container'>
         <span>Logo</span>
         <span>Symbol</span>
-        <span>Price</span>
-        <span>USD Value</span>
+        <span>USD Price</span>
+        <span>Market Cap</span>
       </div>
       {coins && 
         coins.map((coin) => {
