@@ -1,8 +1,37 @@
-# React + Vite
+# Crypto Portfolio Manager — Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React front end for a cryptocurrency portfolio manager, built during the Ironhack Web Development Bootcamp (2024). Users create named portfolios, search coins, add or remove them, and edit or delete portfolios.
 
-Currently, two official plugins are available:
+The mock REST API lives in [crypto-portfolio-server](https://github.com/jrobles-io/crypto-portfolio-server).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
+
+- React 18 + Vite
+- React Router 6
+- Context API for portfolio state (`src/contexts/`)
+- Axios for API calls (`src/services/`)
+- Tailwind CSS
+- Deployed on Netlify
+
+## Features
+
+- Dashboard of all portfolios and their coins
+- Coin search and add-to-portfolio
+- Create, edit and delete portfolios (full CRUD against the API)
+
+## Pages
+
+| Route | Page |
+|---|---|
+| `/` | Dashboard |
+| `/CreatePortfolio` | New portfolio |
+| `/Portfolio/:portfolioId` | Edit portfolio |
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+The API URL is set in `src/services/API_URL.js`. Point it at `http://localhost:4000` to use a local server.
